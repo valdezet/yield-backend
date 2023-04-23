@@ -5,22 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Tasks\TaskFormRequest;
 use App\Http\Resources\Tasks\UserTaskResource;
 use App\Models\Task;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): ResourceCollection
     {
         //
+        $tasks = Task::paginate(10);
+        return UserTaskResource::collection($tasks);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TaskFormRequest $request)
+    public function store(TaskFormRequest $request): JsonResponse
     {
         //
         $newTask = Task::create($request->validated());

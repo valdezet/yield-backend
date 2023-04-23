@@ -19,7 +19,7 @@ class UserTaskResource extends JsonResource
             'notes' => $this->notes,
             'is_completed' => $this->resource->isCompleted(),
             'completed_at' => $this->when(
-                $this->resource()->isCompleted(),
+                $this->resource->isCompleted(),
                 $this->completed_at
             )
         ];
