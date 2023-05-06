@@ -28,6 +28,11 @@ class AuthenticatedSessionController extends Controller
         return response()->json(['token' => $request->authenticate()]);
     }
 
+    public function checkApiToken(Request $request)
+    {
+        return response()->noContent();
+    }
+
     /**
      * Destroy an authenticated session.
      */

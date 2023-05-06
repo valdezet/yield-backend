@@ -20,6 +20,10 @@ Route::post('/api-token', [AuthenticatedSessionController::class, 'requestApiTok
     ->middleware('guest')
     ->name('apitoken');
 
+Route::get('/api-token/check', [AuthenticatedSessionController::class, 'checkApiToken'])
+    ->middleware(['auth:sanctum'])
+    ->name('apitoken.check');
+
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
     ->name('password.email');
