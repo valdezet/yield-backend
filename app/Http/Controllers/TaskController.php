@@ -14,10 +14,10 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): ResourceCollection
+    public function index(Request $request): ResourceCollection
     {
         //
-        $tasks = Task::paginate(10);
+        $tasks = Task::where('user_id', $request->user()->id)->paginate(10);
         return UserTaskResource::collection($tasks);
     }
 
